@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War&Peace MEME Coins</title>
+    <style>
+        /* Reset some basic elements */
+        body, h1, p, button {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Base styles */
+        body {
+            background-color: #000;
+            color: #33CC00;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Container for main content */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #0A0A0A;
+            border: 2px solid #33CC00;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(51, 204, 0, 0.2);
+        }
+
+        /* Title */
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Progress bar container */
+        .progress-bar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Individual progress bar section */
+        .progress-bar-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Coin titles */
+        .red-title, .blue-title {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Progress bars */
+        .progress-bar {
+            width: 100%;
+            height: 40px;
+            background-color: #1A1A1A;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            background-color: #33CC00;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: width 2s ease-in-out;
+            animation: glitch 1s infinite;
+        }
+
+        .progress-bar-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #000;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Buy button */
+        .buy-button {
+            background-color: #333;
+            color: #33CC00;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .buy-button:hover {
+            background-color: #444;
+        }
+
+        /* Disclaimer text */
+        .disclaimer-text {
+            margin-top: 30px;
+            font-size: 0.9em;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Introductory content */
+        .intro-content {
+            margin-bottom: 30px;
+            font-size: 1em;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* CSS for the glitchy Matrix-like loading screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            overflow: hidden;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .glitch-text {
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            color: #33CC00;
+            position: relative;
+            animation: glitch 1s linear infinite;
+        }
+
+        .glitch-text::before, .glitch-text::after {
+            content: 'LOADING...';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 #FF00FF;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 #00FFFF;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim2 3s infinite linear alternate-reverse;
+        }
+
+        /* Glitch animation for loading text */
+        @keyframes glitch {
+            0% {
+                transform: translate(0, 0) skew(0deg);
+            }
+            10% {
+                transform: translate(-2px, -2px) skew(1deg);
+            }
+            20% {
+                transform: translate(2px, 2px) skew(-1deg);
+            }
+            30% {
+                transform: translate(-2px, 2px) skew(1deg);
+            }
+            40% {
+                transform: translate(2px, -2px) skew(-1deg);
+            }
+            50% {
+                transform: translate(0, 0) skew(0deg);
+            }
+            60% {
+                transform: translate(-1px, 1px) skew(0.5deg);
+            }
+            70% {
+                transform: translate(1px, -1px) skew(-0.5deg);
+            }
+            80% {
+                transform: translate(-1px, -1px) skew(0.5deg);
+            }
+            90% {
+                transform: translate(1px, 1px) skew(-0.5deg);
+            }
+            100% {
+                transform: translate(0, 0) skew(0deg);
+            }
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(24px, 9999px, 90px, 0);
+            }
+            5% {
+                clip: rect(65px, 9999px, 90px, 0);
+            }
+            10% {
+                clip: rect(80px, 9999px, 94px, 0);
+            }
+            15% {
+                clip: rect(24px, 9999px, 90px, 0);
+            }
+            20% {
+                clip: rect(48px, 9999px, 72px, 0);
+            }
+            25% {
+                clip: rect(10px, 9999px, 85px, 0);
+            }
+            30% {
+                clip: rect(24px, 9999px, 90px, 0);
+            }
+            100% {
+                clip: rect(24px, 9999px, 90px, 0);
+            }
+        }
+
+        @keyframes glitch-anim2 {
+            0% {
+                clip: rect(70px, 9999px, 120px, 0);
+            }
+            5% {
+                clip: rect(65px, 9999px, 109px, 0);
+            }
+            10% {
+                clip: rect(79px, 9999px, 140px, 0);
+            }
+            15% {
+                clip: rect(70px, 9999px, 120px, 0);
+            }
+            20% {
+                clip: rect(58px, 9999px, 112px, 0);
+            }
+            25% {
+                clip: rect(85px, 9999px, 140px, 0);
+            }
+            30% {
+                clip: rect(70px, 9999px, 120px, 0);
+            }
+            100% {
+                clip: rect(70px, 9999px, 120px, 0);
+            }
+        }
+
+        /* Typing Animation */
+        .typing-effect {
+            opacity: 0;
+            animation: typing 0.5s forwards;
+        }
+
+        @keyframes typing {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Hide the loading screen once the content is loaded */
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 599px) {
+            .container {
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 2em;
+            }
+
+            .red-title, .blue-title {
+                font-size: 1.2em;
+            }
+
+            .progress-bar {
+                height: 30px;
+            }
+
+            .buy-button {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+
+            .disclaimer-text {
+                font-size: 0.8em;
+            }
+            
+            .intro-content {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading screen with glitchy Matrix effect -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="glitch-text">LOADING...</div>
+    </div>
+    
+    <!-- Your existing content -->
+    <div class="container" id="mainContent" style="display: none;">
+        <h1 class="title">
+            <span>W</span><span>a</span><span>r</span> <span>o</span><span>r</span> <span>P</span><span>e</span><span>a</span><span>c</span><span>e</span>
+        </h1>
+        <!-- New content section -->
+        <div class="intro-content">
+            <p>
+                <span>Choose</span> <span>what</span> <span>happens</span> <span>in</span> <span>the</span> <span>simulation!</span>
+            </p>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-section">
+                <div class="red-title">
+                    <span>W</span><span>A</span><span>R</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-inner" id="red-progress-bar"></div>
+                    <div class="progress-bar-text" id="red-progress-text">
+                        <span>0</span><span>%</span>
+                    </div>
+                </div>
+                <button class="buy-button" onclick="window.location.href='https://app.uniswap.org/explore/tokens/ethereum/0x';">Buy WAR Coin</button>
+            </div>
+            <div class="progress-bar-section">
+                <div class="blue-title">
+                    <span>P</span><span>E</span><span>A</span><span>C</span><span>E</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-inner" id="blue-progress-bar"></div>
+                    <div class="progress-bar-text" id="blue-progress-text">
+                        <span>0</span><span>%</span>
+                    </div>
+                </div>
+                <button class="buy-button" onclick="window.location.href='https://app.uniswap.org/explore/tokens/ethereum/0x';">Buy PEACE Coin</button>
+            </div>
+        </div>
+        <p class="disclaimer-text">
+            <span>Disclaimer:</span> <span>By</span> <span>purchasing</span> <span>these</span> <span>meme</span> <span>coins,</span> <span>you</span> <span>acknowledge</span> <span>that</span> <span>they</span> <span>have</span> <span>no</span> <span>inherent</span> <span>value,</span> <span>monetary</span> <span>worth,</span> <span>or</span> <span>influence.</span> <span>You</span> <span>assume</span> <span>all</span> <span>risks</span> <span>and</span> <span>waive</span> <span>your</span> <span>right</span> <span>to</span> <span>seek</span> <span>compensation</span> <span>for</span> <span>any</span> <span>losses</span> <span>or</span> <span>disappointments.</span> <span>In</span> <span>short:</span> <span>this</span> <span>is</span> <span>just</span> <span>for</span> <span>fun,</span> <span>don't</span> <span>expect</span> <span>it</span> <span>to</span> <span>be</span> <span>valuable!</span>
+        </p>
+    </div>
+
+    <script>
+        // Function to update the progress bar for Coin 1
+        function red_bar(percent) {
+            var progressBar = document.getElementById('red-progress-bar');
+            var progressText = document.getElementById('red-progress-text');
+            progressBar.style.width = `${percent}%`;
+            progressText.textContent = `${percent}%`;
+        }
+        
+        // Function to update the progress bar for Coin 2
+        function blue_bar(percent) {
+            var progressBar = document.getElementById('blue-progress-bar');
+            var progressText = document.getElementById('blue-progress-text');
+            progressBar.style.width = `${percent}%`;
+            progressText.textContent = `${percent}%`;
+        }
+
+        // Function to animate text by word
+        function animateText(element) {
+            let words = element.querySelectorAll('span');
+            let wordIndex = 0;
+
+            function animateWord() {
+                if (wordIndex < words.length) {
+                    words[wordIndex].classList.add('typing-effect');
+                    wordIndex++;
+                    setTimeout(animateWord, 10); // Adjust this for speed of typing
+                }
+            }
+
+            animateWord();
+        }
+
+        // Loading screen logic
+        window.addEventListener('load', function() {
+            var loadingScreen = document.getElementById('loadingScreen');
+            var mainContent = document.getElementById('mainContent');
+            
+            // Initially hide the main content
+            mainContent.style.display = 'none';
+            
+            // Simulate content loading
+            setTimeout(function() {
+                loadingScreen.classList.add('hidden');
+                mainContent.style.display = 'block';
+                
+                // After showing main content, animate text
+                animateText(mainContent);
+                
+                // Start the progress bar animations
+                setTimeout(function() {
+                    red_bar(0); // Start from 0%
+                    blue_bar(0); // Start from 0%
+                    
+                    setTimeout(function() {
+                        red_bar(100);
+                        blue_bar(0);
+                    }, 100); // Delay in milliseconds
+                }, 500); // Delay the progress bar animation until text is mostly animated
+            }, 1500); // Simulated loading time
+        });
+    </script>
+</body>
+</html>
