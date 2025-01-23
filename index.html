@@ -315,6 +315,21 @@
                 font-size: 0.9em;
             }
         }
+
+        /* Details Panel */
+        .details-panel {
+            background-color: #1A1A1A;
+            border: 1px solid #33CC00;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 400px;
+            color: #33CC00;
+            text-align: center;
+            line-height: 1.8;
+            font-size: 1em;
+        }
     </style>
 </head>
 <body>
@@ -345,7 +360,12 @@
                         <span>0</span><span>%</span>
                     </div>
                 </div>
-                <button class="buy-button" onclick="window.location.href='https://app.uniswap.org/explore/tokens/ethereum/0x';">Buy WAR</button>
+                <button class="buy-button" id="buyWar">Buy WAR</button>
+                <div id="warDetails" class="details-panel" style="display: none;">
+                    <p>Price: 0.0000777 per WAR</p>
+                    <p>Minimum purchase: 0.08 BNB</p>
+                    <p>How to Buy: Transfer BNB coin to ContractAddress. Ensure you're using a wallet like Metamask that supports adding custom tokens.</p>
+                </div>
             </div>
             <div class="progress-bar-section">
                 <div class="blue-title">
@@ -357,7 +377,12 @@
                         <span>0</span><span>%</span>
                     </div>
                 </div>
-                <button class="buy-button" onclick="window.location.href='https://app.uniswap.org/explore/tokens/ethereum/0x';">Buy PEACE</button>
+                <button class="buy-button" id="buyPeace">Buy PEACE</button>
+                <div id="peaceDetails" class="details-panel" style="display: none;">
+                    <p>Price: 0.0000888 per PEACE</p>
+                    <p>Minimum purchase: 0.08 BNB</p>
+                    <p>How to Buy: Transfer BNB coin to ContractAddress. Ensure you're using a wallet like Metamask that supports adding custom tokens.</p>
+                </div>
             </div>
         </div>
         <p class="disclaimer-text">
@@ -425,6 +450,28 @@
                     }, 100); // Delay in milliseconds
                 }, 500); // Delay the progress bar animation until text is mostly animated
             }, 1500); // Simulated loading time
+        });
+
+        // Event listener for the Buy PEACE button
+        document.getElementById('buyPeace').addEventListener('click', function(event) {
+            event.preventDefault();
+            var detailsPanel = document.getElementById('peaceDetails');
+            if (detailsPanel.style.display === "none") {
+                detailsPanel.style.display = "block";
+            } else {
+                detailsPanel.style.display = "none";
+            }
+        });
+
+        // Event listener for the Buy WAR button
+        document.getElementById('buyWar').addEventListener('click', function(event) {
+            event.preventDefault();
+            var detailsPanel = document.getElementById('warDetails');
+            if (detailsPanel.style.display === "none") {
+                detailsPanel.style.display = "block";
+            } else {
+                detailsPanel.style.display = "none";
+            }
         });
     </script>
 </body>
