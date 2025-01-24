@@ -178,15 +178,93 @@
 
         /* Glitch animation for loading text */
         @keyframes glitch {
-            /* ... (glitch animation keyframes as before) ... */
+            0% {
+                transform: translate(0, 0) skew(0deg);
+            }
+            10% {
+                transform: translate(-2px, -2px) skew(1deg);
+            }
+            20% {
+                transform: translate(2px, 2px) skew(-1deg);
+            }
+            30% {
+                transform: translate(-2px, 2px) skew(1deg);
+            }
+            40% {
+                transform: translate(2px, -2px) skew(-1deg);
+            }
+            50% {
+                transform: translate(0, 0) skew(0deg);
+            }
+            60% {
+                transform: translate(-1px, 1px) skew(0.5deg);
+            }
+            70% {
+                transform: translate(1px, -1px) skew(-0.5deg);
+            }
+            80% {
+                transform: translate(-1px, -1px) skew(0.5deg);
+            }
+            90% {
+                transform: translate(1px, 1px) skew(-0.5deg);
+            }
+            100% {
+                transform: translate(0, 0) skew(0deg);
+            }
         }
 
         @keyframes glitch-anim {
-            /* ... (glitch-anim animation keyframes as before) ... */
+            0% {
+                clip: rect(24px, 9999px, 90px, 0);
+            }
+            5% {
+                clip: rect(65px, 9999px, 90px, 0);
+            }
+            10% {
+                clip: rect(80px, 9999px, 94px, 0);
+            }
+            15% {
+                clip: rect(24px, 9999px, 90px, 0);
+            }
+            20% {
+                clip: rect(48px, 9999px, 72px, 0);
+            }
+            25% {
+                clip: rect(10px, 9999px, 85px, 0);
+            }
+            30% {
+                clip: rect(24px, 9999px, 90px, 0);
+            }
+            100% {
+                clip: rect(24px, 9999px, 90px, 0);
+            }
         }
 
         @keyframes glitch-anim2 {
-            /* ... (glitch-anim2 animation keyframes as before) ... */
+            0% {
+                clip: rect(70px, 9999px, 120px, 0);
+            }
+            5% {
+                clip: rect(65px, 9999px, 109px, 0);
+            }
+            10% {
+                clip: rect(79px, 9999px, 140px, 0);
+            }
+            15% {
+                clip: rect(70px, 9999px, 120px, 0);
+            }
+            20% {
+                clip: rect(58px, 9999px, 112px, 0);
+            }
+            25% {
+                clip: rect(85px, 9999px, 140px, 0);
+            }
+            30% {
+                clip: rect(70px, 9999px, 120px, 0);
+            }
+            100% {
+                clip: rect(70px, 9999px, 120px, 0);
+            }
         }
 
         /* Typing Animation */
@@ -208,7 +286,52 @@
 
         /* Responsive adjustments */
         @media screen and (max-width: 599px) {
-            /* ... (responsive adjustments as before) ... */
+            .container {
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 2em;
+            }
+
+            .red-title, .blue-title {
+                font-size: 1.2em;
+            }
+
+            .progress-bar {
+                height: 30px;
+            }
+
+            .buy-button {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+
+            .disclaimer-text {
+                font-size: 0.8em;
+            }
+            
+            .intro-content {
+                font-size: 0.9em;
+            }
+
+            .token-economics-container {
+                flex-direction: column;
+            }
+
+            .token-economics-box {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .contract-address input {
+                width: calc(100% - 70px);
+                font-size: 0.8em;
+            }
+
+            .copy-button {
+                font-size: 0.8em;
+            }
         }
 
         /* Details Panel */
@@ -248,6 +371,36 @@
             margin-bottom: 15px;
             font-size: 1.2em;
         }
+
+        /* Styles for contract address input and copy button */
+        .contract-address {
+            margin-top: 10px;
+        }
+
+        .contract-address input {
+            background-color: #333;
+            color: #33CC00;
+            border: 1px solid #33CC00;
+            border-radius: 5px 0 0 5px;
+            padding: 5px 10px;
+            width: calc(100% - 80px);
+            font-size: 0.9em;
+        }
+
+        .copy-button {
+            background-color: #333;
+            color: #33CC00;
+            border: 1px solid #33CC00;
+            border-radius: 0 5px 5px 0;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .copy-button:hover {
+            background-color: #444;
+        }
     </style>
 </head>
 <body>
@@ -282,7 +435,8 @@
                 <div id="warDetails" class="details-panel" style="display: none;">
                     <p>Price: 0.0000888 BNB per WAR</p>
                     <p>Minimum purchase: 0.08 BNB</p>
-                    <p>How to Buy: Transfer BNB coin to 0xEa514503B515E7D5751DFEca780aa1D8BEc58B8f Ensure you're using a wallet like Metamask that supports adding custom tokens.</p>
+                    <p>How to Buy: Transfer BNB to 0xEa514503B515E7D5751DFEca780aa1D8BEc58B8f Ensure you're using a wallet like Metamask that supports adding custom tokens.</p>
+                    <button onclick="copyToClipboard('0xEa514503B515E7D5751DFEca780aa1D8BEc58B8f')" class="copy-button">Copy address</button>
                 </div>
             </div>
             <div class="progress-bar-section">
@@ -297,9 +451,10 @@
                 </div>
                 <button class="buy-button" id="buyPeace">Buy PEACE</button>
                 <div id="peaceDetails" class="details-panel" style="display: none;">
-                    <p>Price: 0.0000888 BNB per PEC</p>
+                    <p>Price: 0.0000888 BNB per PEACE</p>
                     <p>Minimum purchase: 0.08 BNB</p>
-                    <p>How to Buy: Transfer BNB coin to 0xe117EC515Ac9904459508a57512483775ac3007E Ensure you're using a wallet like Metamask that supports adding custom tokens.</p>
+                    <p>How to Buy: Transfer BNB to 0xe117EC515Ac9904459508a57512483775ac3007E Ensure you're using a wallet like Metamask that supports adding custom tokens.</p>
+                    <button onclick="copyToClipboard('0xe117EC515Ac9904459508a57512483775ac3007E')" class="copy-button">Copy address</button>
                 </div>
             </div>
         </div>
@@ -311,12 +466,14 @@
                 <p>Total Supply: 2,600,000,000 WAR</p>
                 <p>Public Sale: 2,500,000,000 WAR</p>
                 <p>Team Allocation: 100,000,000 WAR</p>
+                <p>80% of BNB received from Public Sale will be provided for liquidity pool</p>
             </div>
             <div class="token-economics-box">
                 <h3>PEACE Token Economics</h3>
-                <p>Total Supply: 2,600,000,000 PEC</p>
-                <p>Public Sale: 2,500,000,000 PEC</p>
-                <p>Team Allocation: 100,000,000 PEC</p>
+                <p>Total Supply: 2,600,000,000 PEACE</p>
+                <p>Public Sale: 2,500,000,000 PEACE</p>
+                <p>Team Allocation: 100,000,000 PEACE</p>
+                <p>80% of BNB received from Public Sale will be provided for liquidity pool</p>
             </div>
         </div>
 
@@ -408,6 +565,12 @@
                 detailsPanel.style.display = "none";
             }
         });
+
+        // Function to copy contract address to clipboard
+        function copyToClipboard(address) {
+            // Get the text field
+            navigator.clipboard.writeText(address)
+        }
     </script>
 </body>
 </html>
