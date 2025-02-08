@@ -431,7 +431,7 @@
                         <span>0</span><span>%</span>
                     </div>
                 </div>
-                <button class="buy-button" id="buyWar" href="https://pump.fun/coin/H8QNXU8XvUBo3KpHUpdQSL6R3SZEyb7L2ZzzsjZxmwZt">Buy WAR</button>
+                <button class="buy-button" id="buyWar" onclick="window.location.href='https://pump.fun/coin/H8QNXU8XvUBo3KpHUpdQSL6R3SZEyb7L2ZzzsjZxmwZt';">Buy WAR</button>
             </div>
             <div class="progress-bar-section">
                 <div class="blue-title">
@@ -443,7 +443,7 @@
                         <span>0</span><span>%</span>
                     </div>
                 </div>
-                <button class="buy-button" id="buyPeace" href="https://pump.fun/coin/2ivPAisryuTvpqAUNEsgMEhKRX6zptyjUbJf7kdZpump">Buy PEACE</button>
+                <button class="buy-button" id="buyPeace" onclick="window.location.href='https://pump.fun/coin/2ivPAisryuTvpqAUNEsgMEhKRX6zptyjUbJf7kdZpump';">Buy PEACE</button>
             </div>
         </div>
 
@@ -529,34 +529,6 @@
                 }, 500); // Delay the progress bar animation until text is mostly animated
             }, 1500); // Simulated loading time
         });
-
-        // Event listener for the Buy PEACE button
-        document.getElementById('buyPeace').addEventListener('click', function(event) {
-            event.preventDefault();
-            var detailsPanel = document.getElementById('peaceDetails');
-            if (detailsPanel.style.display === "none") {
-                detailsPanel.style.display = "block";
-            } else {
-                detailsPanel.style.display = "none";
-            }
-        });
-
-        // Event listener for the Buy WAR button
-        document.getElementById('buyWar').addEventListener('click', function(event) {
-            event.preventDefault();
-            var detailsPanel = document.getElementById('warDetails');
-            if (detailsPanel.style.display === "none") {
-                detailsPanel.style.display = "block";
-            } else {
-                detailsPanel.style.display = "none";
-            }
-        });
-
-        // Function to copy contract address to clipboard
-        function copyToClipboard(address) {
-            // Get the text field
-            navigator.clipboard.writeText(address)
-        }
     </script>
 </body>
 </html>
